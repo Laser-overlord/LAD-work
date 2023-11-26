@@ -1,0 +1,23 @@
+private static void editProperty(Scanner scanner) {
+        System.out.print("Enter the name of the property you want to edit: ");
+        String name = scanner.next();
+        List<Property> properties = currentUser.getProperties();
+        Property propertyToEdit = null;
+        for (Property property : properties) {
+            if (property.getName().equals(name)) {
+                propertyToEdit = property;
+                break;
+            }
+        }
+        if (propertyToEdit != null) {
+            System.out.print("Enter new property name: ");
+            String newName = scanner.next();
+            System.out.print("Enter new property description: ");
+            String newDescription = scanner.next();
+            Property newProperty = new Property(newName, newDescription);
+            currentUser.editProperty(propertyToEdit, newProperty);
+            System.out.println("Property edited successfully.");
+        } else {
+            System.out.println("Property not found.");
+        }
+    }
